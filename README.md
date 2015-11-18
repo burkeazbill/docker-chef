@@ -4,7 +4,7 @@ Repo for creating docker containers with Chef preinstalled.
 
 Primarily for use with kitchen-docker for cookbook testing.
 
-Prebuilt containers @ https://hub.docker.com/r/jmccann/drone-chef/
+Prebuilt containers @ https://hub.docker.com/r/jmccann/chef/
 
 # build.sh
 The script `build.sh` is used to build all the images.  By default it will build for the version of Chef specified in the script and only build for images that do not have a Dockerfile generated for that platform-version-chef_version.
