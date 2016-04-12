@@ -1,0 +1,7 @@
+FROM centos:centos6.7
+MAINTAINER Jacob McCann <jmccann.git@gmail.com>
+
+RUN yum -y install pygpgme yum-utils
+
+ADD chef_stable.repo /etc/yum.repos.d/chef_stable.repo
+RUN yum -y install chef-12.8.1 && yum -y update && yum clean all
