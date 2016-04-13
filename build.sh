@@ -44,5 +44,9 @@ do
       exit 1
     fi
     docker build -f Dockerfile.${chef_ver} --rm=true -t jmccann/chef:${platform}-${version}-${chef_ver} .
+
+    # Push to the hub
+    docker push jmccann/chef:${platform}-${version}
+    docker push jmccann/chef:${platform}-${version}-${chef_ver}
   done
 done
