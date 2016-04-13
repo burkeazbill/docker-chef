@@ -34,5 +34,4 @@ RUN mkdir -p /var/run/sshd
 RUN sed -i.kitchen '/UsePAM/d'  /etc/ssh/sshd_config
 RUN echo 'UsePrivilegeSeparation no' >> /etc/ssh/sshd_config
 RUN echo 'UsePAM no' >> /etc/ssh/sshd_config
-RUN ssh-keygen -A
 RUN systemctl enable sshd.service
