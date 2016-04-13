@@ -35,3 +35,7 @@ RUN sed -i.kitchen '/UsePAM/d'  /etc/ssh/sshd_config
 RUN echo 'UsePrivilegeSeparation no' >> /etc/ssh/sshd_config
 RUN echo 'UsePAM no' >> /etc/ssh/sshd_config
 RUN systemctl enable sshd.service
+
+# Sudo stuff for kitchen-inspec
+RUN echo 'chef ALL=(root) NOPASSWD: ALL' > /etc/sudoers.d/chef
+RUN echo 'Defaults!ALL !requiretty' >> /etc/sudoers.d/chef
