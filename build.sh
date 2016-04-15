@@ -4,6 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 chef_ver=12.5.1
 force=false
+push=true
 
 # Parse opts
 while getopts ":v:f" opt; do
@@ -13,6 +14,10 @@ while getopts ":v:f" opt; do
       ;;
     f)
       force=true
+      ;;
+    l)
+      push=false
+      ;;
   esac
 done
 
@@ -46,7 +51,9 @@ do
     docker build -f Dockerfile.${chef_ver} --rm=true -t jmccann/chef:${platform}-${version}-${chef_ver} .
 
     # Push to the hub
-    docker push jmccann/chef:${platform}-${version}
-    docker push jmccann/chef:${platform}-${version}-${chef_ver}
+    if [ "$push" = true ]; then
+      docker push jmccann/chef:${platform}-${version}
+      docker push jmccann/chef:${platform}-${version}-${chef_ver}
+    fi
   done
 done
