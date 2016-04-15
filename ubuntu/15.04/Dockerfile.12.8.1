@@ -1,0 +1,21 @@
+FROM ubuntu:15.04
+MAINTAINER Jacob McCann <jmccann.git@gmail.com>
+
+RUN apt-get update
+RUN apt-get install -y curl apt-transport-https
+
+RUN curl -sSL "https://packagecloud.io/gpg.key" | apt-key add -
+
+ADD chef_stable.list /etc/apt/sources.list.d/chef_stable.list
+
+RUN apt-get update && apt-get install -y chef=12.8.1-1 \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/*
+
+RUN dpkg-reconfigure locales && \
+    locale-gen en_US.UTF-8 && \
+    /usr/sbin/update-locale LANG=en_US.UTF-8
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
