@@ -7,7 +7,7 @@ force=false
 push=true
 
 # Parse opts
-while getopts ":v:f" opt; do
+while getopts ":v:fl" opt; do
   case $opt in
     v)
       chef_ver=$OPTARG
