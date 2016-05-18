@@ -2,7 +2,7 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-chef_ver=12.5.1
+chef_ver=12.10.24
 force=false
 push=true
 
