@@ -4,7 +4,7 @@ MAINTAINER Jacob McCann <jmccann.git@gmail.com>
 RUN apt-get update
 RUN apt-get install -y curl apt-transport-https
 
-RUN curl -sSL "https://packagecloud.io/gpg.key" | apt-key add -
+RUN curl -sSL "https://downloads.chef.io/packages-chef-io-public.key" | apt-key add -
 
 ADD chef_stable.list /etc/apt/sources.list.d/chef_stable.list
 

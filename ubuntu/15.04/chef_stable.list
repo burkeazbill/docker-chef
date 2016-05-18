@@ -1,2 +1,1 @@
-deb https://packagecloud.io/chef/stable/ubuntu/ trusty main
-deb-src https://packagecloud.io/chef/stable/ubuntu/ trusty main
+deb https://packages.chef.io/stable-apt trusty main
