@@ -1,7 +1,16 @@
-FROM centos:centos7.1.1503
+FROM centos:7
 MAINTAINER Jacob McCann <jmccann.git@gmail.com>
 
 RUN yum -y install pygpgme yum-utils
 
 ADD chef_stable.repo /etc/yum.repos.d/chef_stable.repo
-RUN yum -y install chef-12.5.1 && yum -y update && yum clean all
+RUN yum -y install \
+      chef-12.5.1 \
+      sudo && \
+    yum -y update && yum clean all
+
+RUN rm -f /etc/yum.repos.d/chef_stable.repo
+
+# Sudo stuff for kitchen-inspec
+RUN echo 'chef ALL=(root) NOPASSWD: ALL' > /etc/sudoers.d/chef
+RUN echo 'Defaults!ALL !requiretty' >> /etc/sudoers.d/chef
