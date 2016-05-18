@@ -6,10 +6,17 @@ RUN yum -y install pygpgme yum-utils
 ADD chef_stable.repo /etc/yum.repos.d/chef_stable.repo
 RUN yum -y install \
       chef-12.10.24 \
+      openssh-server \
       sudo && \
-    yum -y update && yum clean all
+    yum -y update && \
+    rm -f /etc/yum.repos.d/chef_stable.repo && \
+    yum clean all
 
-RUN rm -f /etc/yum.repos.d/chef_stable.repo
+# So yum is ready in the future
+RUN yum makecache
+
+# Speed up SSH
+RUN echo 'UseDNS no' >> /etc/ssh/sshd_config
 
 # Sudo stuff for kitchen-inspec
 RUN echo 'chef ALL=(root) NOPASSWD: ALL' > /etc/sudoers.d/chef
